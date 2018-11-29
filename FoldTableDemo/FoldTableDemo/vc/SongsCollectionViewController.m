@@ -29,14 +29,14 @@
     [[SongViewModel getSongs]subscribeNext:^(NSArray   * _Nullable item) {
             
              weakSelf.list=[NSMutableArray arrayWithArray:item];
-        }];
+    }];
         
-        [[SongViewModel getSongs]subscribeCompleted:^{
+    [[SongViewModel getSongs]subscribeCompleted:^{
            
             [weakSelf.table reloadData];
             [weakSelf.table.mj_header endRefreshing];
             [SVProgressHUD dismiss];
-        }];
+    }];
    
     
     
@@ -69,6 +69,30 @@
 }
 #pragma mark table delegate
 /**
+ *  header的高度
+ */
+- (CGFloat )yuFoldingTableView:(YUFoldingTableView *)yuTableView heightForHeaderInSection:(NSInteger )section
+{
+    return 80;
+}
+
+/**
+ *  返回HeaderView
+ */
+- (UIView *)yuFoldingTableView:(UITableView *)yuTableView viewForHeaderInSection:(NSInteger)section
+{
+    SongHeaderView *view=[yuTableView dequeueReusableHeaderFooterViewWithIdentifier:kSongHeaderView];
+    if(view==nil)
+    {
+        view=[[SongHeaderView alloc]initWithReuseIdentifier:kSongHeaderView];
+    }
+    
+    view.song=self.list[section];
+    
+    return view;
+}
+
+/**
  *  返回section的个数
  */
 - (NSInteger )numberOfSectionForYUFoldingTableView:(YUFoldingTableView *)yuTableView
@@ -81,13 +105,6 @@
 - (NSInteger )yuFoldingTableView:(YUFoldingTableView *)yuTableView numberOfRowsInSection:(NSInteger )section
 {
     return 1;
-}
-/**
- *  header的高度
- */
-- (CGFloat )yuFoldingTableView:(YUFoldingTableView *)yuTableView heightForHeaderInSection:(NSInteger )section
-{
-    return 80;
 }
 /**
  *  cell的高度
@@ -139,24 +156,6 @@
     }
     [cell configCell:self.list[indexPath.section]];
     return cell;
-}
-
-
-
-/**
- *  返回HeaderView
- */
-- (UIView *)yuFoldingTableView:(UITableView *)yuTableView viewForHeaderInSection:(NSInteger)section
-{
-    SongHeaderView *view=[yuTableView dequeueReusableHeaderFooterViewWithIdentifier:kSongHeaderView];
-    if(view==nil)
-    {
-        view=[[SongHeaderView alloc]initWithReuseIdentifier:kSongHeaderView];
-    }
-    
-    view.song=self.list[section];
-    
-    return view;
 }
 
 @end
