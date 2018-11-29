@@ -1,6 +1,0 @@
-framework module UIImage_ImageCompress {
-  umbrella header "UIImage+ImageCompress-umbrella.h"
-
-  export *
-  module * { export * }
-}
