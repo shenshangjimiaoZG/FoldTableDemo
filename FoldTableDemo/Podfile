@@ -1,0 +1,26 @@
+platform :ios, ‘12.0’
+## ignore warning
+inhibit_all_warnings!
+
+target 'FoldTableDemo' do
+ 
+ use_frameworks!
+ 
+   	pod 'MJRefresh'
+   	pod 'MJExtension'
+   	pod 'Masonry'
+   	pod 'IQKeyboardManager'
+    pod 'RealReachability'
+   	
+    pod 'RSKImageCropper'
+    pod 'SDWebImage'
+    pod 'UIImage+ImageCompress'
+    pod 'ZYCornerRadius'
+    pod 'SVProgressHUD'
+    
+    pod 'HJNetwork'
+   
+    pod 'ReactiveObjC'
+   
+    
+end
