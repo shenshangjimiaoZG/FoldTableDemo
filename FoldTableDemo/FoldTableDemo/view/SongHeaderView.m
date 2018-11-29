@@ -44,12 +44,14 @@
         make.center.equalTo(self.contentView);
         make.height.equalTo(@30);
         
+        
     }];
     [self.lblSinger mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerY.equalTo(self.contentView);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.height.equalTo(@25);
+        make.width.equalTo(@120);
     }];
 }
 -(void)setSong:(Song *)song
